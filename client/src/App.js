@@ -26,6 +26,10 @@ function App() {
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
       </form> 
+
+      <p class="lead mt-4">
+        No Account? <a href="/users/register">Register</a>
+      </p>
     </div>
   );
 }

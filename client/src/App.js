@@ -1,37 +1,29 @@
 import './App.css';
+import React from 'react';
+import Nav from './Nav';
+import Register from './Register';
+import Login from './Login';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
+    <Router> 
     <div className="App">
-      <form action="/users/login" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Enter Password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form> 
-
-      <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
-      </p>
+      <Nav />
+      <Switch>
+        <Route path="/" exact component={Home}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
+      </Switch>
     </div>
+    </Router>
   );
 }
+
+const Home = () => (
+  <div>
+    <h1>Home Page</h1>
+  </div> 
+);
 
 export default App;

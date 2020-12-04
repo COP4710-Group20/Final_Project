@@ -23,7 +23,7 @@ function AdminView() {
             </div>        
             <div className="Acolumn"> 
                 <h2>Admin Name</h2>
-                    Joel Itipo
+                    Emmanuel
             </div>
             <div className="Acolumn"> 
                 <h2>Email</h2>

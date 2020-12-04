@@ -3,7 +3,7 @@ Final Project for COP4710
 
 npm start from inside client
 
-npm install express body-parser mysql nodemon in server
+npm install express react-scripts react-router-dom body-parser mysql nodemon in server
 
 npm run start to start the server normally
 alternatively node index.js

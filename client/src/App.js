@@ -12,6 +12,9 @@ import ListOrganizedEvents from './ListOrganizedEvents'
 import ListEventsByCity from './ListEventsByCity'
 import ListEventsByDate from './ListEventsByDate'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Participant from './Participant';
+import Adminview from './AdminView'; 
+
 
 function App() {
   return (
@@ -29,6 +32,8 @@ function App() {
         <Route path="/listorganizedevents" component={ListOrganizedEvents}/>
         <Route path="/listeventsbydate" component={ListEventsByDate}/>
         <Route path="/listeventsbycity" component={ListEventsByCity}/>
+        <Route path="/participant" component={Participant}/>
+        <Route path="/Adminview" component={Adminview}/> 
       </Switch>
     </div>
     </Router>

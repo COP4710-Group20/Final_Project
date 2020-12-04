@@ -1,0 +1,42 @@
+.AcontainerB{
+    /* background:black; */
+    background-color: #282c34;
+    box-sizing: border-box;
+    margin-top: -20px;
+   width: 100%;
+   max-width: 4000px;
+   height: 14000px;
+   color:white;
+   
+}
+.Acolumn {
+    float: left;
+    width: 25%;
+    margin-bottom: 16px;
+    margin-left: 80px;
+    padding: 0 8px;
+  }
+
+button{
+    background-color: green;
+    width: 150px; 
+    height:50px;
+    margin-left: 10px;
+    color:white;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.AbtnA_btton{
+    margin-left: 1300px;
+    margin-top: -30px;
+}
+
+.ATop_column{
+    margin-bottom: 20px;
+    margin-left: 86px;
+    margin-top: 20px;
+    color:white;
+}
+
+

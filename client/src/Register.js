@@ -1,19 +1,43 @@
 import './App.css';
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React , { useState }from 'react';
+import {Link} from 'react-router-dom';
+import Axios from 'axios';
 
 function Register() {
+
+  const [usernameReg, setUsernameReg] = useState("");
+  const [passwordReg, setPasswordReg] = useState("");
+
+  const register = () => {
+    Axios.post('http://localhost:3001/register', {
+      username: usernameReg, 
+      password: passwordReg
+    }).then((response) => {
+      console.log(response);
+    }) 
+  };
   return (
     <div>
      <h1> Register </h1>
      <form className="registerForm">
         <label>Username</label>
-        <input type="text" placeholder="Enter Username..."/>
+        <input 
+        type="text" 
+        onChange = {(e) => {
+          setUsernameReg(e.target.value);
+        }}
+        placeholder="Enter Username..."
+        />
         <label>Password</label>
-        <input type="password" placeholder="Enter Password..."/>
+        <input 
+        type="password" 
+        onChange = {(e) => {
+          setPasswordReg(e.target.value);
+        }}
+        placeholder="Enter Password..."/>
         <label>Confirm Password</label>
         <input type="password" placeholder="Confirm Password..."/>
-        <input type="submit" className="register-submit" Value="register"/>
+        <button onClick={register}> Register </button> 
         <Link to="/login">
         <p>Already have an account?</p>
         </Link>

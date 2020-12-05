@@ -1,11 +1,14 @@
 import './App.css';
 import React from 'react';
-import {Link} from 'react-router-dom'
+import PartButtons from './PartButtons'
+import SearchBox from './SearchBox';
 
 function ListEventsByCity() {
   return (
     <div>
-     <h1> List Events In a city... </h1>   
+      <PartButtons></PartButtons>
+     <h1> List Events In a city... </h1>
+     <SearchBox placeholder="Enter city name" handleChange={(e) => console.log(e.target.value)}/>
     </div>
   );
 }

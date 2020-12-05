@@ -1,11 +1,13 @@
 import './App.css';
 import React from 'react';
 import {Link} from 'react-router-dom'
+import PartButtons from './PartButtons'
 
 function ListActiveEvents() {
   return (
     <div>
-     <h1> List Active Events Here... </h1>   
+        <PartButtons></PartButtons>
+        <h1> List Active Events </h1>   
     </div>
   );
 }

@@ -7,7 +7,7 @@ function ListActiveEvents() {
   return (
     <div>
         <PartButtons></PartButtons>
-     <h1> List Active Events </h1>   
+        <h1> List Active Events </h1>   
     </div>
   );
 }

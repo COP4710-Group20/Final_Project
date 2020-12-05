@@ -14,8 +14,8 @@ function PartButtons() {
     history.push('/listeventsbycity')
   }
 
-  function RedirectActEvent() {
-    history.push('/listactiveevents')
+  function CreateEvent() {
+    history.push('/createevent')
   }
 
   function ViewActive() {
@@ -27,18 +27,21 @@ function PartButtons() {
   }
 
 return (
-    <div>
-      <h1>Participant</h1>
-      <button onClick={DateSearch}>Active Event Date Search</button>
-      <button onClick={CitySearch}>Active Event City Search</button>
+    <div className="flex-container">
+      <div>
+      <h2>Participant</h2>
+        <button onClick={DateSearch}>Active Event Date Search</button>
+        <button onClick={CitySearch}>Active Event City Search</button>
+      </div>
       
-      <h1>Admin</h1>
-      <button onClick={RedirectActEvent}>Create Event</button>
-      <button onClick={ViewActive}>View Active Events</button>
-      <button onClick={ViewPast}>View Past Events</button>
+      <div>
+      <h2>Admin</h2>
+        <button onClick={CreateEvent}>Create Event</button>
+        <button onClick={ViewActive}>View Active Events</button>
+        <button onClick={ViewPast}>View Past Events</button>
+      </div>
     </div> 
 
-    
 );
 }
 

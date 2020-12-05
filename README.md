@@ -15,3 +15,4 @@ alternatively nodemon index.js
 Downloaded mysql workbench
 
 To create the database, run the database_creation_script.sql file in your MySQL Workbench.
+The database is now named user_events_db.

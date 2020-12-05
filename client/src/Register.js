@@ -11,7 +11,7 @@ function Register() {
   const register = () => {
     Axios.post('http://localhost:3001/register', {
       username: usernameReg, 
-      password: passwordReg
+      password: passwordReg,
     }).then((response) => {
       console.log(response);
     }) 

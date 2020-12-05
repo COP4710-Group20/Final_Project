@@ -36,3 +36,22 @@ nav{
   align-items: center;
   list-style: none;
 }
+
+.loginForm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.registerForm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* .login-submit{
+  width: 120px;
+  height: 30px;
+} */

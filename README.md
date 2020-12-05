@@ -12,4 +12,6 @@ If you run in test mode the server will update automatically as you edit your co
 npm run devStart to start development mode in server
 alternatively nodemon index.js
 
-Downloaded mysql workbench and created a schema called CrudDB
+Downloaded mysql workbench
+
+To create the database, run teh database_creation_script.sql file in your MySQL Workbench.

@@ -29,17 +29,21 @@ function Nav() {
             <Link style={navStyle} to='/listadmins'>
                 <li> List Admin </li> 
             </Link>
-            <Link style={navStyle} to='/listorganizedevents'>
-                <li> List Events Organized </li> 
-            </Link>
-            <Link style={navStyle} to='/listactiveevents'>
-                <li> List Active Events </li> 
-            </Link>
+
             <Link style={navStyle} to='/listeventsbydate'>
                 <li> By Date Events  </li> 
             </Link>
             <Link style={navStyle} to='/listeventsbycity'>
                 <li> By City Events </li> 
+            </Link>
+            <Link style={navStyle} to='/createevent'>
+                <li> Create Event </li> 
+            </Link>
+            <Link style={navStyle} to='/listactiveevents'>
+                <li> List Active Events </li> 
+            </Link>
+            <Link style={navStyle} to='/listorganizedevents'>
+                <li> List Events Organized </li> 
             </Link>
         </ul>
      

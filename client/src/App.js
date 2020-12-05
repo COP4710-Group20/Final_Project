@@ -7,10 +7,11 @@ import SuperAdmin from './SuperAdmin'
 import User from './User'
 import ListAdmin from './ListAdmins'
 import ListParticipant from './ListParticipants'
-import ListActiveEvents from './ListActiveEvents'
 import ListOrganizedEvents from './ListOrganizedEvents'
 import ListEventsByCity from './ListEventsByCity'
 import ListEventsByDate from './ListEventsByDate'
+import CreateEvent from './CreateEvent'
+import ListActiveEvents from './ListActiveEvents'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Participant from './Participant';
 import Adminview from './AdminView'; 
@@ -18,6 +19,8 @@ import Adminview from './AdminView';
 
 function App() {
   return (
+
+    
     <Router> 
     <div className="App">
       <Nav />
@@ -28,15 +31,20 @@ function App() {
         <Route path="/register" component={Register}/>
         <Route path="/listadmins" component={ListAdmin}/>
         <Route path="/listparticipants" component={ListParticipant}/>
-        <Route path="/listactiveevents" component={ListActiveEvents}/>
-        <Route path="/listorganizedevents" component={ListOrganizedEvents}/>
+       
         <Route path="/listeventsbydate" component={ListEventsByDate}/>
         <Route path="/listeventsbycity" component={ListEventsByCity}/>
+
+        <Route path="/createevent" component={CreateEvent}/>
+        <Route path="/listactiveevents" component={ListActiveEvents}/>
+        <Route path="/listorganizedevents" component={ListOrganizedEvents}/>
+        
         <Route path="/participant" component={Participant}/>
         <Route path="/Adminview" component={Adminview}/> 
       </Switch>
     </div>
     </Router>
+    
   );
 }
 

@@ -51,6 +51,11 @@ nav{
   flex-direction: column;
 }
 
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+}
 /* .login-submit{
   width: 120px;
   height: 30px;

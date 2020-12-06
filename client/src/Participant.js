@@ -5,7 +5,7 @@ import "./Participant.css";
 import Axios from 'axios';
 
 function Participant() {
-    const [name, setUser]= useState(false);
+    const [name, setName]= useState(false);
     useEffect(() => {
     getName();
   }, []);

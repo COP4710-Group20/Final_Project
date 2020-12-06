@@ -9,51 +9,73 @@ app.use(cors());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    database: 'myschema'
+    password: 'root',
+    port: 3306,
+    database: 'users_events_db'
 });
 
 app.post('/register', (req, res)=>{
 
-  const username = req.body.username;
+  const display_name = req.body.username;
   const password = req.body.password;
-  db.query("INSERT INTO users (username, password) VALUES (?,?)", 
-  [username, password], 
-  (err, result) => {
-    console.log(err);
+
+  var error = '';
+  var resultLength = 0;
+
+  db.query('SELECT * FROM users WHERE display_name = (?)',[display_name], function (err, result) {
+    if (!err)
+    {
+      console.log(result.length);
+      resultLength = result.length;
+      if (resultLength > 0)
+      {
+        error = "The user name you have entered is already linked to an account.";
+        var ret = { error: error };
+        res.send(ret);
+      }
+      else
+      {
+        // A real user name will be added when the field is added to registration
+        db.query("INSERT INTO users (display_name, user_name, pw) VALUES (?,'harry',?)", 
+        [display_name, password], 
+        function (err, result ){
+          console.log(err);
+        });
+      }
+    }
+    else
+    {
+      console.log(err);
+    }
   });
+
 });
 
 app.post('/login', (req, res)=>{
-  const username = req.body.username;
+  const display_name = req.body.username;
   const password = req.body.password;
-  "SELECT * FROM users WHERE username = ? AND password = ?",
-  [username, password],
-  (err, result) => {
-    if(err) {
-      res.send({err: err})
+  db.query("SELECT * FROM users WHERE display_name = ? AND pw = ?",
+  [display_name, password],
+  function (err, result) {
+    if(err) 
+    {
+      console.log(err);
+      res.send({err: err});
     } 
     
-    if(result) {
-      res.send(result)
-    } else {
-      res.send({message: "Wrong username/password combination"})
+    else if(result) 
+    {
+      console.log(result);
+      res.send(result);
+    } 
+    else 
+    {
+      console.log("Bad credentials :/");
+      res.send({message: "Wrong display_name/password combination"});
     }
       
-    
-  }
+  });
 });
-
-// FIRST PRACTICE INSERTION
-// db.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-//   var sql = "INSERT INTO movie_reviews (movieName, movieReview) VALUES ('Inception', 'Good Movie')";
-//   db.query(sql, function (err, result) {
-//     if (err) throw err;
-//     console.log("1 record inserted");
-//   });
-// });
 
 
 app.listen(3001, () => {

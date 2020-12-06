@@ -77,7 +77,28 @@ app.post('/login', (req, res)=>{
       
   });
 });
+app.get('/Participant', (req, res)=>{//for now it is zero but will be changed to is_participant >=1
+  db.query("SELECT display_name FROM users WHERE is_participant = 0 ",
+  [display_name, is_participant],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
 
+    else if(result)
+    {
+      //console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "Empty"});
+    }
+
+  });
+});
 
 app.listen(3001, () => {
     console.log("running on port 3001");

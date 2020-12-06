@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import {Link} from 'react-router-dom'
 import PartButtons from './PartButtons'
 
 function CreateEvent() {

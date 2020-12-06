@@ -37,7 +37,7 @@ nav{
   list-style: none;
 }
 
-.loginForm{
+.login{
   display: flex;
   align-items: center;
   justify-content: center;

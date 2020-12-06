@@ -9,8 +9,8 @@ app.use(cors());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
-    port: 3306,
+    password: 'password',
+    port: 3300,
     database: 'users_events_db'
 });
 
@@ -54,16 +54,17 @@ app.post('/register', (req, res)=>{
 app.post('/login', (req, res)=>{
   const display_name = req.body.username;
   const password = req.body.password;
+
   db.query("SELECT * FROM users WHERE display_name = ? AND pw = ?",
   [display_name, password],
-  function (err, result) {
+  (err, result) => {
     if(err) 
     {
       console.log(err);
       res.send({err: err});
     } 
     
-    else if(result) 
+    if(result.length > 0) 
     {
       console.log(result);
       res.send(result);

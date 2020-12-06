@@ -12,6 +12,7 @@ function Register() {
     Axios.post('http://localhost:3001/register', {
       username: usernameReg, 
       password: passwordReg,
+      port: 3300
     }).then((response) => {
       console.log(response);
     }) 

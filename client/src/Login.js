@@ -10,22 +10,40 @@ function Login() {
 
   const [loginStatus, setLoginStatus] = useState("");
 
+  // const login = () => {
+  //   console.log("Logging in");
+  //   Axios.post("http://localhost:3001/login", {
+  //     username: username, 
+  //     password: password,
+  //   }).then((response) => {
+  //     console.log(response.data);
+
+  //     if(response.data.message) {
+  //       setLoginStatus(response.data.message);
+  //     } else {
+  //       setLoginStatus(response.data[0].username);
+  //     }
+  //   }) 
+  // };
+
   const login = () => {
     console.log("Logging in");
-    Axios.post('http://localhost:3001/login', {
+    Axios.post("http://localhost:3001/login", {
       username: username, 
       password: password,
     }).then((response) => {
+      console.log(response.data);
 
       if(response.data.message) {
         setLoginStatus(response.data.message);
       } else {
-        setLoginStatus(response.data[0].username);
+        setLoginStatus(response.data[0].display_name);
       }
     }) 
   };
 
   return (
+    /*
     <div>
      <h1> Login </h1>
      <form className="loginForm">
@@ -41,6 +59,39 @@ function Login() {
 
      <h1> {loginStatus} </h1>
     </div>
+*/
+<div>
+<div className="login">
+        <h1>Login</h1>
+        
+        <label> Username </label>
+        <input
+          type="text"
+          placeholder="Username..."
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="Password..."
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <Link to="/register">
+         <p>Don't have an account?</p>
+         </Link>
+        <button onClick={login}> Login </button>
+      </div>
+
+      <h1>{loginStatus}</h1>
+
+
+</div>
+    
   );
 }
 

@@ -1,5 +1,3 @@
-import React from "react";
-import  {useState, useEffect} from 'react';
 import {useHistory} from "react-router-dom";
 import "./Participant.css";
 import Axios from 'axios';
@@ -16,7 +14,7 @@ function Participant() {
         history.push('/adminview');
     }
    useEffect(() => {
-    fetch("http://localhost:3001/participant")
+    fetch("http://localhost:3001/singlePart")
       .then(res => res.json())
       .then(
         (result) => {
@@ -39,17 +37,36 @@ function Participant() {
 
             </div>
             <div className="column">
-                <h2>Participant Name</h2>
+                <h2>Event title</h2>
                     <ul>
-                    {participants.map(participant => <Link to="/participantevent"><div>{participant.display_name}</div></Link>)}
+                    {participants.map(participant => <div>{participant.event_title}</div>)}
                     </ul>
             </div>
 
             <div className="column">
-                <h2>Events Attended</h2>
-                    {participants.map(participant => <div>{participant.is_participant}</div>)}
+                <h2>Event description</h2>
+                    {participants.map(participant => <div>{participant.event_description}</div>)}
             </div>
-
+            <div className="column">
+                <h2>Event URL</h2>
+                    {participants.map(participant => <div>{participant.event_URL}</div>)}
+            </div>
+            <div className="column">
+                <h2>Event Start Date</h2>
+                    {participants.map(participant => <div>{participant.event_start_date}</div>)}
+            </div>
+            <div className="column">
+                <h2>Event End date</h2>
+                    {participants.map(participant => <div>{participant.event_end_date}</div>)}
+            </div>
+            <div className="column">
+                <h2>Event city</h2>
+                    {participants.map(participant => <div>{participant.event_city}</div>)}
+            </div>
+            <div className="column">
+                <h2>Event address</h2>
+                    {participants.map(participant => <div>{participant.event_address}</div>)}
+            </div>
         </div>
     )
 }

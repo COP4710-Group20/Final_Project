@@ -183,6 +183,27 @@ app.post('/createEvent', (req, res)=>{
 
     });
 });
+app.get('/singlePart', (req, res)=>{
+  db.query("SELECT * FROM events",
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result)
+    {
+      //console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "Empty"});
+    }
+
+  });
+});
 
 app.listen(3001, () => {
     console.log("running on port 3001");

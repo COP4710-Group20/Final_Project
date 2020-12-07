@@ -15,6 +15,7 @@ import ListActiveEvents from './ListActiveEvents'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Participant from './Participant';
 import Adminview from './AdminView'; 
+import participantevent from './participantEvent'; 
 // import Login from './Login.js';
 
 
@@ -44,6 +45,7 @@ function App() {
         
         <Route path="/participant" component={Participant}/>
         <Route path="/Adminview" component={Adminview}/> 
+        <Route path="/participantevent" component={participantEvent}/> 
       </Switch>
     </div>
     </Router>

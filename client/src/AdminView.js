@@ -1,13 +1,10 @@
 import React from "react";
 import  {useState, useEffect} from 'react';
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import "./AdminView.css";
 
 function AdminView() {
-    const [name, setName]= useState(false);
-    useEffect(() => {
-    getName();
-  }, []);
+    const [participants, setParticipants]= useState([]);
     const history=useHistory();
     const routeParticipant= () =>{
         history.push('/participant');
@@ -15,15 +12,19 @@ function AdminView() {
     const routeAdmin= () =>{
         history.push('/adminview');
     }
-    function getName() {
-    fetch('http://localhost:3001/adminview')
-      .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        setName(data);
-      });
-  }
+
+  useEffect(() => {
+    fetch("http://localhost:3001/adminview")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setParticipants(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+      )
+  }, [])
     return (
         <div className="AcontainerB">
             <div className="ATop_column">
@@ -37,18 +38,12 @@ function AdminView() {
             </div>
             <div className="Acolumn">
                 <h2>Admin Name</h2>
-                    {name ? name : 'Empty'}
-            </div>
-            <div className="Acolumn">
-                <h2>Email</h2>
-                <div className="Arowb">
-                    emmanuel@example.com
-                </div>
+                    {participants.map(participant => <Link to="/participantevent"><div>{participant.display_name}</div></Link>)}
             </div>
 
             <div className="Acolumn">
                 <h2>Events hosted</h2>
-                    10
+                    {participants.map(participant => <div>{participant.is_participant}</div>)}
             </div>
 
         </div>

@@ -135,7 +135,7 @@ app.post('/createEvent', (req, res)=>{
   // const new_event = { user_id:user_id, event_title:event_title, /*event_description:event_description,*/
   //                     event_URL:event_URL, event_start_date:event_start_date, event_end_date:event_end_date,
   //                     event_city:event_city, event_address:event_address, event_is_active:0};
-  
+
   // Add description back
   db.query("INSERT INTO events (user_id, event_title, event_url, event_start_date, event_end_date, event_city, event_address, event_is_active) VALUES (?,?,?,?,?,?,?,?)", 
     [user_id,event_title,event_URL,event_start_date,event_end_date,event_city,event_address,0], 
@@ -149,7 +149,7 @@ app.post('/createEvent', (req, res)=>{
       {
         res.send({message: "Event created successfully"});
       }
-      
+
     });
 });
 

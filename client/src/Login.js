@@ -1,6 +1,6 @@
 import './App.css';
 import React , { useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
 function Login() {
@@ -26,6 +26,12 @@ function Login() {
   //   }) 
   // };
 
+  const history=useHistory();
+
+  const routeUser= () =>{
+    
+}
+
   const login = () => {
     console.log("Logging in");
     Axios.post("http://localhost:3001/login", {
@@ -37,7 +43,12 @@ function Login() {
       if(response.data.message) {
         setLoginStatus(response.data.message);
       } else {
-        setLoginStatus(response.data[0].display_name);
+        if (response.data[0].is_super == 1) {
+          history.push('/superadmin');
+        } else {
+          history.push('/user');
+        }
+        setLoginStatus(response.data[0].display_name + response.data[0].is_super);
       }
     }) 
   };

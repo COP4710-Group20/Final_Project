@@ -10,19 +10,20 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    port: 3300,
+    port: 3306,
     database: 'users_events_db'
 });
 
 app.post('/register', (req, res)=>{
 
-  const display_name = req.body.username;
+  const user_name = req.body.username;
   const password = req.body.password;
+  const display_name = req.body.display_name;
 
   var error = '';
   var resultLength = 0;
 
-  db.query('SELECT * FROM users WHERE display_name = (?)',[display_name], function (err, result) {
+  db.query('SELECT * FROM users WHERE user_name = (?)',[user_name], function (err, result) {
     if (!err)
     {
       console.log(result.length);
@@ -36,8 +37,8 @@ app.post('/register', (req, res)=>{
       else
       {
         // A real user name will be added when the field is added to registration
-        db.query("INSERT INTO users (display_name, user_name, pw) VALUES (?,'harry',?)", 
-        [display_name, password], 
+        db.query("INSERT INTO users (display_name, user_name, pw) VALUES (?,?,?)", 
+        [display_name , user_name, password], 
         function (err, result ){
           console.log(err);
         });

@@ -7,12 +7,13 @@ function Register() {
 
   const [usernameReg, setUsernameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
+  const [displaynameReg, setDisplaynameReg] = useState("");
 
   const register = () => {
     Axios.post('http://localhost:3001/register', {
       username: usernameReg, 
       password: passwordReg,
-      port: 3300
+      display_name: displaynameReg,
     }).then((response) => {
       console.log(response);
     }) 
@@ -29,6 +30,14 @@ function Register() {
         }}
         placeholder="Enter Username..."
         />
+        <label>Display Name</label>
+        <input 
+        type="text" 
+        onChange = {(e) => {
+          setDisplaynameReg(e.target.value);
+        }}
+        placeholder="Enter Display Name..."
+        />
         <label>Password</label>
         <input 
         type="password" 
@@ -39,7 +48,7 @@ function Register() {
         <label>Confirm Password</label>
         <input type="password" placeholder="Confirm Password..."/>
         <button onClick={register}> Register </button> 
-        <Link to="/login">
+        <Link to="/">
         <p>Already have an account?</p>
         </Link>
      </form>    

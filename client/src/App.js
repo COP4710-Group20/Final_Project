@@ -15,6 +15,7 @@ import ListActiveEvents from './ListActiveEvents'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Participant from './Participant';
 import Adminview from './AdminView'; 
+// import Login from './Login.js';
 
 
 function App() {
@@ -23,8 +24,10 @@ function App() {
     
     <Router> 
     <div className="App">
-      <Nav />
+      {/* <Nav /> */}
+      {/* <Login /> */}
       <Switch>
+        <Route path="/" exact component={Login}/>
         <Route path="/user" component={User}/>
         <Route path="/superadmin" component={SuperAdmin}/>
         <Route path="/login" component={Login}/>

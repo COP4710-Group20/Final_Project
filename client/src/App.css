@@ -56,6 +56,18 @@ nav{
   display: flex;
   justify-content: space-around;
 }
+
+.events {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.events button:hover {
+  cursor: pointer;
+}
 /* .login-submit{
   width: 120px;
   height: 30px;

@@ -2,30 +2,9 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
 
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],
-  credentials: true,
-}));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(
-  session({
-    key: "userId",
-    subscribe: "subscribe",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 60* 60* 24,
-    }
-  })
-);
+app.use(cors());
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -73,20 +52,12 @@ app.post('/register', (req, res)=>{
 
 });
 
-app.get('/login', (req, res) => {
-  if(req.session.user) {
-    res.send({loggedIn: true, user: req.session.user });
-  } else {
-    res.send({loggedIn: false});
-  }
-});
-
 app.post('/login', (req, res)=>{
-  const user_name = req.body.username;
+  const display_name = req.body.username;
   const password = req.body.password;
 
-  db.query("SELECT * FROM users WHERE user_name = ? AND pw = ?",
-  [user_name, password],
+  db.query("SELECT * FROM users WHERE display_name = ? AND pw = ?",
+  [display_name, password],
   (err, result) => {
     if(err) 
     {
@@ -97,7 +68,6 @@ app.post('/login', (req, res)=>{
     if(result.length > 0) 
     {
       console.log(result);
-      req.session.user = result;
       res.send(result);
     } 
     else 
@@ -168,8 +138,8 @@ app.post('/createEvent', (req, res)=>{
   //                     event_city:event_city, event_address:event_address, event_is_active:0};
 
   // Add description back
-  db.query("INSERT INTO events (user_id, event_title, event_url, event_start_date, event_end_date, event_city, event_address, event_is_active) VALUES (?,?,?,?,?,?,?,?)", 
-    [user_id,event_title,event_URL,event_start_date,event_end_date,event_city,event_address,0], 
+  db.query("INSERT INTO events (user_id, event_title, event_description, event_url, event_start_date, event_end_date, event_city, event_address, event_is_active) VALUES (?,?,?,?,?,?,?,?,?)", 
+    [user_id,event_title,event_description,event_URL,event_start_date,event_end_date,event_city,event_address,0], 
     function (err, result ){
       if (err)
       {
@@ -182,27 +152,6 @@ app.post('/createEvent', (req, res)=>{
       }
 
     });
-});
-app.get('/singlePart', (req, res)=>{
-  db.query("SELECT * FROM events",
-  function (err, result) {
-    if(err)
-    {
-      console.log(err);
-      res.send({err: err});
-    }
-
-    else if(result)
-    {
-      //console.log(result);
-      res.send(result);
-    }
-    else
-    {
-      res.send({message: "Empty"});
-    }
-
-  });
 });
 
 app.listen(3001, () => {

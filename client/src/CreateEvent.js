@@ -17,7 +17,7 @@ function CreateEvent() {
   const [city, setCity] = useState("");
 
   const displayInfo = () => {
-    console.log(startDate);
+    console.log(Moment(startDate).format("YYYY-MM-DD"));
   };
 
   const createEvent = () => {
@@ -27,8 +27,8 @@ function CreateEvent() {
       event_title: title,
       event_description: description,
       event_url: url,
-      event_start_date: startDate,
-      event_end_date: endDate,
+      event_start_date: Moment(startDate).format("YYYY-MM-DD"),
+      event_end_date: Moment(endDate).format("YYYY-MM-DD"),
       event_city: city,
       event_address: address,
 
@@ -97,7 +97,7 @@ function CreateEvent() {
           setCity(event.target.value);
           }}/>
 
-        <button onClick={displayInfo}>Add Event</button>
+        <button onClick={createEvent}>Add Event</button>
       </div>
     </div>
   );

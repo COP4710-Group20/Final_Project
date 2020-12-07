@@ -28,7 +28,7 @@ CREATE TABLE `events` (
   `event_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `event_title` varchar(45) NOT NULL,
-  `event_description` varchar(500) NOT NULL,
+  `event_description` varchar(500) NOT NULL DEFAULT '',
   `event_URL` varchar(100) NOT NULL,
   `event_start_date` date NOT NULL,
   `event_end_date` date NOT NULL,

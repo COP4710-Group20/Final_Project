@@ -9,8 +9,8 @@ app.use(cors());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    port: 3300,
+    password: 'root',
+    port: 3306,
     database: 'users_events_db'
 });
 
@@ -119,6 +119,40 @@ app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to i
 
   });
 });
+
+app.post('/createEvent', (req, res)=>{
+
+  const user_id = req.body.user_id;
+  const event_title = req.body.event_title;
+  const event_description = req.body.event_description;
+  const event_URL = req.body.event_url;
+  const event_start_date = req.body.event_start_date;
+  const event_end_date = req.body.event_end_date;
+  const event_city = req.body.event_city;
+  const event_address = req.body.event_address;
+
+  // TODO: Check if current date > or <= event start and end to determine if event is active. currently default to zero
+  // const new_event = { user_id:user_id, event_title:event_title, /*event_description:event_description,*/
+  //                     event_URL:event_URL, event_start_date:event_start_date, event_end_date:event_end_date,
+  //                     event_city:event_city, event_address:event_address, event_is_active:0};
+  
+  // Add description back
+  db.query("INSERT INTO events (user_id, event_title, event_url, event_start_date, event_end_date, event_city, event_address, event_is_active) VALUES (?,?,?,?,?,?,?,?)", 
+    [user_id,event_title,event_URL,event_start_date,event_end_date,event_city,event_address,0], 
+    function (err, result ){
+      if (err)
+      {
+        console.log(err);
+        res.send({err: err});
+      }
+      else
+      {
+        res.send({message: "Event created successfully"});
+      }
+      
+    });
+});
+
 app.listen(3001, () => {
     console.log("running on port 3001");
 });

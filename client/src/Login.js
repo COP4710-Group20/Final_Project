@@ -28,10 +28,6 @@ function Login() {
 
   const history=useHistory();
 
-  const routeUser= () =>{
-    
-}
-
   const login = () => {
     console.log("Logging in");
     Axios.post("http://localhost:3001/login", {

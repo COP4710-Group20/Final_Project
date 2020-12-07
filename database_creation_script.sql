@@ -28,7 +28,7 @@ CREATE TABLE `events` (
   `event_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `event_title` varchar(45) NOT NULL,
-  `event_description` varchar(500) NOT NULL DEFAULT 'A Description',
+  `event_description` varchar(500) NOT NULL,
   `event_URL` varchar(100) NOT NULL,
   `event_start_date` date NOT NULL,
   `event_end_date` date NOT NULL,
@@ -46,8 +46,8 @@ values('display name', 'user name', 'password');
 insert into signed_up_participants(event_id,user_id)
 values(10,2);
 
-insert into events(user_id,event_title,event_URL,event_start_date,event_end_date,event_city,event_address)
-values(21, "Dancing with the Stars", "http://www.dance2night.com", '2020-12-05', '2020-12-06', "Orlando", "123 Municipal Drive");
+insert into events(user_id,event_title,event_description,event_URL,event_start_date,event_end_date,event_city,event_address)
+values(21, "Dancing with the Stars", 'A Description', "http://www.dance2night.com", '2020-12-05', '2020-12-06', "Orlando", "123 Municipal Drive");
 
 # show tables
 #select * from users;

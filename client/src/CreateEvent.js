@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import PartButtons from "./PartButtons";
 import DataPicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Axios from 'axios';
 
 function CreateEvent() {
 
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [address, setAddress] = useState("");
@@ -16,6 +18,35 @@ function CreateEvent() {
   const displayInfo = () => {
     console.log(title + url + startDate + endDate + address + city);
   };
+
+  const createEvent = () => {
+    console.log("Create Event");
+    Axios.post("http://localhost:3001/createEvent", {
+      user_id: 1,
+      event_title: title,
+      event_description: description,
+      event_url: url,
+      event_start_date: startDate,
+      event_end_date: endDate,
+      event_city: city,
+      event_address: address,
+
+    })};
+  //   .then((response) => {
+  //     console.log(response.data);
+
+  //     if(response.data.message) {
+  //       setLoginStatus(response.data.message);
+  //     } else {
+  //       if (response.data[0].is_super == 1) {
+  //         history.push('/superadmin');
+  //       } else {
+  //         history.push('/user');
+  //       }
+  //       setLoginStatus(response.data[0].display_name + response.data[0].is_super);
+  //     }
+  //   }) 
+  // };
 
   return (
     <div className="event-class">
@@ -33,12 +64,17 @@ function CreateEvent() {
           setUrl(event.target.value);
         }}/>
 
+        <label>Event Description</label>
+        <textarea id="event_description" name="event_description" rows="4" cols="50" onChange={(event) => {
+          setDescription(event.target.value);
+        }}/>
+
       
         <label>Start Date</label>
         <DataPicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          dateFormat="MM/dd/yy"
+          dateFormat="yyyy-MM-dd"
           minDate={new Date()}
         />
 
@@ -46,7 +82,7 @@ function CreateEvent() {
         <DataPicker
           selected={endDate}
           onChange={(date) => setEndDate(date)}
-          dateFormat="MM/dd/yy"
+          dateFormat="yyyy-MM-dd"
           minDate={new Date()}
         />
 

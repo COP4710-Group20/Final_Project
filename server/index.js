@@ -100,7 +100,7 @@ app.get('/participant', (req, res)=>{//for now it is zero but will be changed to
   });
 });
 app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to is_admin >=1
-  db.query("SELECT display_name FROM users WHERE is_admin = 0 ",
+  db.query("SELECT display_name FROM users WHERE is_admin > 0 ",
   function (err, result) {
     if(err)
     {

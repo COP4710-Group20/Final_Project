@@ -79,7 +79,7 @@ app.post('/login', (req, res)=>{
   });
 });
 app.get('/participant', (req, res)=>{//for now it is zero but will be changed to is_participant >=1
-  db.query("SELECT display_name FROM users WHERE is_participant = 0 ",
+  db.query("SELECT * FROM users WHERE is_participant = 0 ",
   function (err, result) {
     if(err)
     {

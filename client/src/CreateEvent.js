@@ -4,6 +4,7 @@ import PartButtons from "./PartButtons";
 import DataPicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
+import Moment from 'moment';
 
 function CreateEvent() {
 
@@ -16,7 +17,7 @@ function CreateEvent() {
   const [city, setCity] = useState("");
 
   const displayInfo = () => {
-    console.log(title + url + startDate + endDate + address + city);
+    console.log(startDate);
   };
 
   const createEvent = () => {

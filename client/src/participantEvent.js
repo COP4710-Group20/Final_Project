@@ -1,7 +1,7 @@
-import {useHistory} from "react-router-dom";
+import {useHistory } from 'react-router-dom';
 import "./Participant.css";
 import Axios from 'axios';
-
+import React, { useState, useEffect } from "react";
 function Participant() {
     const [participants, setParticipants]= useState([]);
     const history=useHistory();

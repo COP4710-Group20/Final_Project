@@ -1,6 +1,6 @@
 import React from "react";
 import  {useState, useEffect} from 'react';
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import "./Participant.css";
 import Axios from 'axios';
 

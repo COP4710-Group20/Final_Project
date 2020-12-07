@@ -120,6 +120,27 @@ app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to i
 
   });
 });
+app.get('/singlePart', (req, res)=>{
+  db.query("SELECT * FROM events",
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result)
+    {
+      //console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "Empty"});
+    }
+
+  });
+});
 
 app.post('/createEvent', (req, res)=>{
 

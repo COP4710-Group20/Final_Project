@@ -40,18 +40,14 @@ function Participant() {
             </div>
             <div className="column">
                 <h2>Participant Name</h2>
-                    {participants.map(participant => (
-                        {participant.display_name}
-
-                    ))}
+                    <ul>
+                    {participants.map(participant => <Link><div>{participant.display_name}</div></Link>)}
+                    </ul>
             </div>
 
             <div className="column">
                 <h2>Events Attended</h2>
-                    {participants.map(participant => (
-                        {participant.is_participant}
-
-                    ))}
+                    {participants.map(participant => <div>{participant.is_participant}</div>)}
             </div>
 
         </div>

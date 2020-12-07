@@ -5,10 +5,7 @@ import "./Participant.css";
 import Axios from 'axios';
 
 function Participant() {
-    const [name, setName]= useState(false);
-    useEffect(() => {
-    getName();
-  }, []);
+    const [participants, setParticipants]= useState([]);
     const history=useHistory();
     const routeParticipant= () =>{
         // let path ='participant';
@@ -18,15 +15,18 @@ function Participant() {
         // let path ='participant';
         history.push('/adminview');
     }
-    function getName() {
-    fetch('http://localhost:3001/participant')
-      .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        setName(data);
-      });
-  }
+   useEffect(() => {
+    fetch("http://localhost:3001/participant")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setParticipants(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+      )
+  }, [])
     return (
         <div className="containerB">
             <div className="Top_column">
@@ -40,12 +40,18 @@ function Participant() {
             </div>
             <div className="column">
                 <h2>Participant Name</h2>
-                    {name ? name : 'Empty'}
+                    {participants.map(participant => (
+                        {participant.display_name}
+
+                    ))}
             </div>
 
             <div className="column">
                 <h2>Events Attended</h2>
-                    1
+                    {participants.map(participant => (
+                        {participant.is_participant}
+
+                    ))}
             </div>
 
         </div>

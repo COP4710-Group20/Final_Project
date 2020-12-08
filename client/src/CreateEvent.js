@@ -3,66 +3,101 @@ import React, { useState } from "react";
 import PartButtons from "./PartButtons";
 import DataPicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import moment from 'moment';
+import Axios from 'axios';
+import Moment from 'moment';
 
 function CreateEvent() {
 
-  const [event_title, setEvent_title] = useState("");
-  const [event_URL, setEvent_URL] = useState("");
-  const [event_start_date, setevent_start_date] = useState(null);
-  const [event_end_date, setevent_end_date] = useState(null);
-  const [event_address, setevent_address] = useState("");
-  const [event_city, setevent_city] = useState("");
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
 
   const displayInfo = () => {
-    console.log(event_start_date);
+    console.log(Moment(startDate).format("YYYY-MM-DD"));
   };
- 
-  // moment(date).format("YYYY-MM-DD")
+
+  const createEvent = () => {
+    console.log("Create Event");
+    Axios.post("http://localhost:3001/createEvent", {
+      user_id: 1,
+      event_title: title,
+      event_description: description,
+      event_url: url,
+      event_start_date: Moment(startDate).format("YYYY-MM-DD"),
+      event_end_date: Moment(endDate).format("YYYY-MM-DD"),
+      event_city: city,
+      event_address: address,
+
+    })};
+  //   .then((response) => {
+  //     console.log(response.data);
+
+  //     if(response.data.message) {
+  //       setLoginStatus(response.data.message);
+  //     } else {
+  //       if (response.data[0].is_super == 1) {
+  //         history.push('/superadmin');
+  //       } else {
+  //         history.push('/user');
+  //       }
+  //       setLoginStatus(response.data[0].display_name + response.data[0].is_super);
+  //     }
+  //   }) 
+  // };
+
   return (
-    <div className="event-class">
+    <div className="userDashboard">
       <PartButtons></PartButtons>
       <div className="events">
         <h1> Create Event </h1>
 
-        <label>Event event_title</label>
+        <label>Event Title</label>
         <input type="text" onChange={(event) => {
-          setEvent_title(event.target.value);
+          setTitle(event.target.value);
         }}/>
 
-        <label>Event event_URL</label>
+        <label>Event URL</label>
         <input type="text" onChange={(event) => {
-          setEvent_URL(event.target.value);
+          setUrl(event.target.value);
+        }}/>
+
+        <label>Event Description</label>
+        <textarea id="event_description" name="event_description" rows="4" cols="50" onChange={(event) => {
+          setDescription(event.target.value);
         }}/>
 
       
         <label>Start Date</label>
         <DataPicker
-          selected={event_start_date}
-          onChange={(date) => setevent_start_date(date)}
-          dateFormat="yyyy/MM/dd "
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          dateFormat="yyyy-MM-dd"
           minDate={new Date()}
         />
 
         <label>End Date</label>
         <DataPicker
-          selected={event_end_date}
-          onChange={(date) => setevent_end_date(date)}
-          dateFormat="yyyy/MM/dd"
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
+          dateFormat="yyyy-MM-dd"
           minDate={new Date()}
         />
 
-        <label>event_address</label>
+        <label>Address</label>
         <input type="text" onChange={(event) => {
-          setevent_address(event.target.value);
+          setAddress(event.target.value);
         }}/>
 
-        <label>event_city</label>
+        <label>City</label>
         <input type="text" onChange={(event) => {
-          setevent_city(event.target.value);
+          setCity(event.target.value);
           }}/>
 
-        <button onClick={displayInfo}>Add Event</button>
+        <button onClick={createEvent}>Add Event</button>
       </div>
     </div>
   );

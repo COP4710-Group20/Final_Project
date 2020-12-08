@@ -5,6 +5,7 @@ import "./AdminView.css";
 
 function AdminView() {
     const [participants, setParticipants]= useState([]);
+    const [aName, setAName]= useState([]);
     const history=useHistory();
     const routeParticipant= () =>{
         history.push('/participant');
@@ -36,9 +37,22 @@ function AdminView() {
                 </div>
 
             </div>
+            <div> 
+                <h1> Search admin to see their events hosted </h1>
+                <input type="text" placeholder="Insert Admin Name..." 
+                onChange={(e) => {
+                setAName(e.target.value);
+                }}></input>
+                <button>Search Their Events!</button>
+                </div>
+            {/* <div className="AdminNameInput">
+                <form>
+                    <input id="AdminName"> </input>
+                </form>    
+            </div>     */}
             <div className="Acolumn">
                 <h2>Admin Name</h2>
-                    {participants.map(participant => <Link to="/participantevent"><div>{participant.display_name}</div></Link>)}
+                    {participants.map(participant => <Link to={{pathname: "/participantevent", data: participant.user_id}}><div>{participant.display_name}</div></Link>)}
             </div>
 
             <div className="Acolumn">

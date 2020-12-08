@@ -8,7 +8,7 @@ function ListEventsByDate() {
 
   const [selectedDate, setSelectedDate] = useState(null)
   return (
-    <div>
+    <div className="userDashboard">
       <PartButtons></PartButtons>
      <h1> List Events By Date Here.. </h1>   
       <DataPicker selected={selectedDate} 

@@ -53,11 +53,11 @@ app.post('/register', (req, res)=>{
 });
 
 app.post('/login', (req, res)=>{
-  const display_name = req.body.username;
+  const user_name = req.body.username;
   const password = req.body.password;
 
-  db.query("SELECT * FROM users WHERE display_name = ? AND pw = ?",
-  [display_name, password],
+  db.query("SELECT * FROM users WHERE user_name = ? AND pw = ?",
+  [user_name, password],
   (err, result) => {
     if(err) 
     {
@@ -117,7 +117,8 @@ app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to i
   });
 });
 app.get('/singlePart', (req, res)=>{
-  db.query("SELECT * FROM events",
+  const id= req.body.id;
+  db.query("SELECT * FROM events WHERE user_id= id",
   function (err, result) {
     if(err)
     {
@@ -154,9 +155,28 @@ app.post('/createEvent', (req, res)=>{
   //                     event_URL:event_URL, event_start_date:event_start_date, event_end_date:event_end_date,
   //                     event_city:event_city, event_address:event_address, event_is_active:0};
 
+
+  var start_date = new Date(event_start_date).toISOString().slice(0,10);
+  var end_date = new Date(event_end_date).toISOString().slice(0,10);
+  var today = new Date().toISOString().slice(0, 10)
+
+  console.log(start_date);
+  console.log(end_date);
+  console.log(today);
+  console.log(user_id);
+  if (today >= start_date && today <= end_date)
+  {
+    var active = 1;
+  }
+  else
+  {
+    var active = 0;
+  }
+  const event_is_active = active;
+
   // Add description back
   db.query("INSERT INTO events (user_id, event_title, event_description, event_url, event_start_date, event_end_date, event_city, event_address, event_is_active) VALUES (?,?,?,?,?,?,?,?,?)", 
-    [user_id,event_title,event_description,event_URL,event_start_date,event_end_date,event_city,event_address,0], 
+    [user_id,event_title,event_description,event_URL,event_start_date,event_end_date,event_city,event_address,event_is_active], 
     function (err, result ){
       if (err)
       {
@@ -165,9 +185,20 @@ app.post('/createEvent', (req, res)=>{
       }
       else
       {
-        res.send({message: "Event created successfully"});
+        db.query("UPDATE users SET is_admin = 1 WHERE user_id = (?)",
+          [user_id],
+          function(err, result){
+            if(err)
+            {
+              console.log(err);
+              res.send({err:err});
+            }
+            else
+            {
+              res.send({message: "Event created successfully"});
+            }
+          });
       }
-
     });
 });
 

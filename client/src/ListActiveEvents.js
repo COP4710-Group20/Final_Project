@@ -42,7 +42,7 @@ function ListActiveEvents() {
 
   
   return (
-    <div>
+    <div className="userDashboard">
       <div className="flex-container">
         <div>
           <h2>Participant</h2>
@@ -54,7 +54,7 @@ function ListActiveEvents() {
           <h2>Admin</h2>
           <button onClick={CreateEvent}>Create Event</button>
           <button onClick={ViewActive}>View Active Events</button>
-          <button onClick={ViewPast}>View Past Events</button>
+          <button onClick={ViewPast}>View All Events</button>
         </div>
       </div>
 

@@ -51,7 +51,7 @@ function App() {
           
           <Route path="/participant" component={Participant}/>
           <Route path="/Adminview" component={Adminview}/> 
-          <Route path="/participantevent/:number" component={ParticipantEvent}/> 
+          <Route path="/participantevent" component={ParticipantEvent}/> 
         </Switch>
       </div>
       </Router>

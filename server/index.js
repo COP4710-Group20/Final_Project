@@ -121,7 +121,8 @@ app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to i
   });
 });
 app.get('/singlePart', (req, res)=>{
-  db.query("SELECT * FROM events",
+  const id= req.body.id;
+  db.query("SELECT * FROM events WHERE user_id= id",
   function (err, result) {
     if(err)
     {

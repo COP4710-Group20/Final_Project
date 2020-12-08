@@ -10,7 +10,7 @@ app.use(cors());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'password',
     port: 3306,
     database: 'users_events_db'
 });
@@ -80,7 +80,7 @@ app.post('/login', (req, res)=>{
   });
 });
 app.get('/participant', (req, res)=>{//for now it is zero but will be changed to is_participant >=1
-  db.query("SELECT * FROM users WHERE is_participant = 0 ",
+  db.query("SELECT * FROM users WHERE is_participant > 0 ",
   function (err, result) {
     if(err)
     {
@@ -101,7 +101,7 @@ app.get('/participant', (req, res)=>{//for now it is zero but will be changed to
   });
 });
 app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to is_admin >=1
-  db.query("SELECT display_name FROM users WHERE is_admin > 0 ",
+  db.query("SELECT * FROM users WHERE is_admin > 0 ",
   function (err, result) {
     if(err)
     {
@@ -121,26 +121,76 @@ app.get('/adminview', (req, res)=>{//for now it is zero but will be changed to i
 
   });
 });
-app.get('/singlePart', (req, res)=>{
-  db.query("SELECT * FROM events ",
-  function (err, result) {
-    if(err)
-    {
-      console.log(err);
-      res.send({err: err});
-    }
+app.post('/singlePart', (req, res)=>{
+  const aName = req.body.name;
+  //console.log(req.body.name);
+  let user_id;
+  db.query("SELECT * FROM users WHERE display_name = ?",
+  [aName],
+  (err, result) => {
+    
+    //console.log(result);
+    user_id = result[0].user_id;
+    //console.log(user_id);
+    db.query("SELECT * FROM events WHERE user_id = ?",
+    [user_id],
+    function (err, result) {
+      if(err)
+      {
+        console.log(err);
+        res.send({err: err});
+      }
 
-    else if(result)
-    {
-      //console.log(result);
-      res.send(result);
-    }
-    else
-    {
-      res.send({message: "Empty"});
-    }
+      else if(result)
+      {
+        console.log(result);
+        res.send(result);
+      }
+      else
+      {
+        res.send({message: "Empty"});
+      }
 
+    });
   });
+
+  
+});
+
+app.post('/singlePart2', (req, res)=>{
+  const uName = req.body.uName;
+  //console.log(req.body.name);
+  let user_id;
+  db.query("SELECT * FROM users WHERE display_name = ?",
+  [uName],
+  (err, result) => {
+    
+    //console.log(result);
+    user_id = result[0].user_id;
+    //console.log(user_id);
+    db.query("SELECT * FROM signed_up_participants WHERE user_id = ?",
+    [user_id],
+    function (err, result) {
+      if(err)
+      {
+        console.log(err);
+        res.send({err: err});
+      }
+
+      else if(result)
+      {
+        console.log(result);
+        res.send(result);
+      }
+      else
+      {
+        res.send({message: "Empty"});
+      }
+
+    });
+  });
+
+  
 });
 
 app.post('/createEvent', (req, res)=>{

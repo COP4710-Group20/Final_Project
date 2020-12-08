@@ -2,6 +2,7 @@ import React from "react";
 import  {useState, useEffect} from 'react';
 import {Link, useHistory} from "react-router-dom";
 import "./AdminView.css";
+import Axios from 'axios';
 
 function AdminView() {
     const [participants, setParticipants]= useState([]);
@@ -12,6 +13,19 @@ function AdminView() {
     }
     const routeAdmin= () =>{
         history.push('/adminview');
+    }
+
+    const searchAdmin= () =>{
+        Axios.post("http://localhost:3001/singlepart", {
+            name: aName,
+        }).then(
+            (result) => {
+                console.log(result);
+                //document.getElementsByClassName("adminName").innerHTML = "New HTML";
+                console.log(document.getElementById("help"));
+                document.getElementById("help").innerHTML = result.data[0].event_id + " " + result.data[0].user_id + " " + aName;
+            }
+        )
     }
 
   useEffect(() => {
@@ -43,7 +57,7 @@ function AdminView() {
                 onChange={(e) => {
                 setAName(e.target.value);
                 }}></input>
-                <button>Search Their Events!</button>
+                <button onClick={searchAdmin}>Search Their Events!</button>
                 </div>
             {/* <div className="AdminNameInput">
                 <form>
@@ -52,13 +66,17 @@ function AdminView() {
             </div>     */}
             <div className="Acolumn">
                 <h2>Admin Name</h2>
-                    {participants.map(participant => <Link to={{pathname: "/participantevent", data: participant.user_id}}><div>{participant.display_name}</div></Link>)}
+                    {participants.map(participant => <div>{participant.display_name}</div>)}
             </div>
 
             <div className="Acolumn">
                 <h2>Events hosted</h2>
-                    {participants.map(participant => <div>{participant.is_participant}</div>)}
+                    {participants.map(participant => <div>{participant.is_admin}</div>)}
             </div>
+
+            <div className="myDiv" >
+                <p className="adminName" id="help">Hi</p>
+            </div>    
 
         </div>
     )

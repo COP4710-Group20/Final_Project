@@ -10,8 +10,8 @@ const HomeReducer = (state, action) => {
 			// that are overwritten in the state
 			return {...state, user: action.payload}
 		}
-		case 'update_main_text': {
-			return {...state, mainText: action.payload.text}
+		case 'update_user_search': {
+			return {...state, display_name: action.payload.text}
 		}
 		default: {
 			// ${varName} is a way of accessing a variable within a string, but string must use ``

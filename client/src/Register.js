@@ -9,6 +9,7 @@ function Register() {
   const [passwordReg, setPasswordReg] = useState("");
   const [displaynameReg, setDisplaynameReg] = useState("");
 
+
   const register = () => {
     Axios.post('http://localhost:3001/register', {
       username: usernameReg, 
@@ -51,7 +52,9 @@ function Register() {
         <Link to="/">
         <p>Already have an account?</p>
         </Link>
+        <Link to="/">
         <button onClick={register}> Register </button> 
+        </Link>
      </form>    
     </div>
   );

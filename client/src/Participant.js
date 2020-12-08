@@ -41,7 +41,7 @@ function Participant() {
             <div className="column">
                 <h2>Participant Name</h2>
                     <ul>
-                    {participants.map(participant => <Link to="/participantevent/{{participant.user_id}}"><div>{participant.display_name}</div></Link>)}
+                    {participants.map(participant => <Link to="/participantevent"><div>{participant.display_name}</div></Link>)}
                     </ul>
             </div>
 

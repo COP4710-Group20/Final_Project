@@ -1,3 +1,4 @@
+const moment = require('moment');
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
@@ -9,7 +10,7 @@ app.use(cors());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: 'root',
     port: 3306,
     database: 'users_events_db'
 });
@@ -153,12 +154,6 @@ app.post('/createEvent', (req, res)=>{
   const event_city = req.body.event_city;
   const event_address = req.body.event_address;
 
-  // TODO: Check if current date > or <= event start and end to determine if event is active. currently default to zero
-  // const new_event = { user_id:user_id, event_title:event_title, /*event_description:event_description,*/
-  //                     event_URL:event_URL, event_start_date:event_start_date, event_end_date:event_end_date,
-  //                     event_city:event_city, event_address:event_address, event_is_active:0};
-
-
   var start_date = new Date(event_start_date).toISOString().slice(0,10);
   var end_date = new Date(event_end_date).toISOString().slice(0,10);
   var today = new Date().toISOString().slice(0, 10)
@@ -203,6 +198,33 @@ app.post('/createEvent', (req, res)=>{
           });
       }
     });
+});
+
+app.post('/viewByCity',(req, res)=>{
+
+  const event_city = req.body.event_city;
+  var today = new Date();
+  //Moment(today).format("YYYY-NN-DD");
+  db.query("SELECT * FROM events WHERE event_city = (?) AND event_end_date >= (?)",
+  [event_city, moment(today).format("YYYY-MM-DD")],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result.length > 0)
+    {
+      //console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "There are no events planned in that city."});
+    }
+
+  });
 });
 
 app.listen(3001, () => {

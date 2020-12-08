@@ -11,7 +11,7 @@ function User() {
     });
   });
   return (
-    <div>
+    <div className="userDashboard">
       <PartButtons></PartButtons>
      <h1> Welcome User </h1>
     </div>

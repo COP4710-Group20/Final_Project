@@ -19,9 +19,10 @@ function Register() {
     }) 
   };
   return (
-    <div>
-     <h1> Register </h1>
+    <div className="registerPage">
+    
      <form className="registerForm">
+     <h1> Register </h1>
         <label>Username</label>
         <input 
         type="text" 
@@ -45,12 +46,12 @@ function Register() {
           setPasswordReg(e.target.value);
         }}
         placeholder="Enter Password..."/>
-        <label>Confirm Password</label>
-        <input type="password" placeholder="Confirm Password..."/>
-        <button onClick={register}> Register </button> 
+        {/* <label>Confirm Password</label> */}
+        {/* <input type="password" placeholder="Confirm Password..."/> */}
         <Link to="/">
         <p>Already have an account?</p>
         </Link>
+        <button onClick={register}> Register </button> 
      </form>    
     </div>
   );

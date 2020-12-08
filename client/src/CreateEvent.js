@@ -50,7 +50,7 @@ function CreateEvent() {
   // };
 
   return (
-    <div className="event-class">
+    <div className="userDashboard">
       <PartButtons></PartButtons>
       <div className="events">
         <h1> Create Event </h1>

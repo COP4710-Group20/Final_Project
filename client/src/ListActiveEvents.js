@@ -4,7 +4,7 @@ import PartButtons from './PartButtons'
 
 function ListActiveEvents() {
   return (
-    <div>
+    <div className="userDashboard">
         <PartButtons></PartButtons>
         <h1> List Active Events </h1>   
     </div>

@@ -1,14 +1,20 @@
 import './App.css';
-import React , { useState} from 'react';
+import React , { useState, useContext } from 'react';
 import {Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
+import {HomeContext} from './provider/provider';
 
 function Login() {
-  
+  const global = useContext(HomeContext)
+  const state = global.state
+  const dispatch = global.dispatch
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [loginStatus, setLoginStatus] = useState("");
+  console.log("THIS IS THE STATE");
+  console.log(state);
 
   // const login = () => {
   //   console.log("Logging in");
@@ -39,7 +45,11 @@ function Login() {
       if(response.data.message) {
         setLoginStatus(response.data.message);
       } else {
-        if (response.data[0].is_super == 1) {
+        if (response.data[0].is_super == 1) { 
+          dispatch({type: "update_user",
+            payload: {
+                user: response.data[0]
+        }})
           history.push('/superadmin');
         } else {
           history.push('/user');

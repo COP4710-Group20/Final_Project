@@ -17,6 +17,10 @@
     padding: 0 8px;
   }
 
+.column > ul > a{
+    color: #CC2936;
+}  
+
 button{
     background-color: green;
     width: 150px; 

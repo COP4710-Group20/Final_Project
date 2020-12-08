@@ -92,10 +92,6 @@ app.get('/participant', (req, res)=>{//for now it is zero but will be changed to
       //console.log(result);
       res.send(result);
     }
-    else
-    {
-      res.send({message: "Empty"});
-    }
 
   });
 });

@@ -28,10 +28,30 @@ function Participant() {
         }).then(
             (result) => {
                 console.log(result);
-                document.getElementById("emmanuel").innerHTML = result.data.map(piece => {return piece.event_id});
-                //document.getElementsByClassName("adminName").innerHTML = "New HTML";
-                //console.log(document.getElementById("help"));
-                //document.getElementById("help").innerHTML = result.data[0].event_id + " " + result.data[0].user_id + " " + aName;
+                document.getElementById("s1").innerHTML = "Event Title";
+                document.getElementById("s2").innerHTML = "Event Description";
+                /*document.getElementById("s3").innerHTML = "Event URL";
+                document.getElementById("s4").innerHTML = "Start Date";
+                document.getElementById("s5").innerHTML = "End Date";
+                document.getElementById("s6").innerHTML = "City";
+                document.getElementById("s7").innerHTML = "Address";*/
+                var Events = document.getElementsByClassName("Rows1")
+                for (var i = 0; i < Events.length; i++) {
+                    document.getElementsByClassName("Rows1")[i].innerHTML = "";
+                }
+                console.log(document.getElementsByClassName("Rows1"));
+
+                var Events2 = document.getElementsByClassName("Rows2")
+                for (var i = 0; i < Events2.length; i++) {
+                    Events2[i].innerHTML = "";
+                }
+                document.getElementById("d1").innerHTML = result.data.map(index => index.event_id);
+                /*document.getElementById("d2").innerHTML = result.data.map(index => index.event_description);
+                document.getElementById("d3").innerHTML = result.data.map(index => index.event_URL);
+                document.getElementById("d4").innerHTML = result.data.map(index => index.event_start_date);
+                document.getElementById("d5").innerHTML = result.data.map(index => index.event_end_date);
+                document.getElementById("d6").innerHTML = result.data.map(index => index.event_city);
+                document.getElementById("d7").innerHTML = result.data.map(index => index.event_address);*/
             }
         )
     }
@@ -59,27 +79,50 @@ function Participant() {
 
             </div>
 
-            <div> 
+            <div>
                 <h1> Search participant name to see their events attended </h1>
-                <input type="text" placeholder="Insert Participant Name..." 
+                <input type="text" placeholder="Insert Participant Name..."
                 onChange={(e) => {
                 setUName(e.target.value);
                 }}></input>
                 <button onClick={searchUser}>Search Their Events!</button>
                 </div>
             <div className="column">
-                <h2>Participant Name</h2>
+                <h2 id= "s1">Participant Name</h2>
                     <ul>
-                    {participants.map(participant => <div>{participant.display_name}</div>)}
+                    {participants.map(participant => <div className="Rows1" id="d1">{participant.display_name}</div>)}
                     </ul>
             </div>
 
             <div className="column">
-                <h2>Events Attended</h2>
-                    {participants.map(participant => <div>{participant.is_participant}</div>)}
+                <h2 id="s2">Events Attended</h2>
+                    {participants.map(participant => <div className="Rows2" id="d2">{participant.is_participant}</div>)}
             </div>
 
-            <div><p id="emmanuel"></p></div>
+            <div className="column">
+                <h2 id="s3"> </h2>
+                    <div id="d3"> </div>
+            </div>
+
+            <div className="column">
+                <h2 id="s4"> </h2>
+                    <div id="d4"> </div>
+            </div>
+
+            <div className="column">
+                <h2 id="s5"> </h2>
+                    <div id="d5"> </div>
+            </div>
+
+            <div className="column">
+                <h2 id="s6"> </h2>
+                    <div id="d6"> </div>
+            </div>
+
+            <div className="column">
+                <h2 id="s7"> </h2>
+                    <div id="d7"> </div>
+            </div>
 
         </div>
     )

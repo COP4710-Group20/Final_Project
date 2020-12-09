@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    port: 3306,
+    port: 3300,
     database: 'users_events_db'
 });
 

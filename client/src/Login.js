@@ -45,11 +45,11 @@ function Login() {
       if(response.data.message) {
         setLoginStatus(response.data.message);
       } else {
-        if (response.data[0].is_super == 1) { 
-          dispatch({type: "update_user",
+        dispatch({type: "update_user",
             payload: {
                 user: response.data[0]
         }})
+        if (response.data[0].is_super == 1) { 
           history.push('/superadmin');
         } else {
           history.push('/user');

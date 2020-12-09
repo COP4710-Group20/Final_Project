@@ -1,12 +1,19 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PartButtons from "./PartButtons";
 import DataPicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
 import Moment from 'moment';
+import {HomeContext} from './provider/provider';
 
 function CreateEvent() {
+
+  const global = useContext(HomeContext)
+  const state = global.state
+  const dispatch = global.dispatch
+  
+  console.log(state);
 
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -23,7 +30,7 @@ function CreateEvent() {
   const createEvent = () => {
     console.log("Create Event");
     Axios.post("http://localhost:3001/createEvent", {
-      user_id: 1,
+      user_id: state.user.user.user_id,
       event_title: title,
       event_description: description,
       event_url: url,

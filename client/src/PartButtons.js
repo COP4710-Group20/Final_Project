@@ -39,7 +39,7 @@ return (
         <div className="adminButtons">
         <button onClick={CreateEvent}>Create Event</button>
         <button onClick={ViewActive}>View Active Events</button>
-        <button onClick={ViewPast}>View Past Events</button>
+        <button onClick={ViewPast}>View All Events</button>
         </div>
       </div>
     </div> 

@@ -161,7 +161,17 @@ nav{
   justify-content: space-around;
   color: white;
 }
+.city-header {
+  display: flex;
+  justify-content: space-around;
+  color: whitesmoke;
+  padding-left: 40px;
+}
 
+.date-text-box {
+  color: whitesmoke;
+  padding-bottom: 20px;
+}
 /* .login-submit{
   width: 120px;
   height: 30px;

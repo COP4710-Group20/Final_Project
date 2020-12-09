@@ -48,8 +48,8 @@ function ListEventsByDate() {
       <PartButtons></PartButtons>
       <h1> List Events By Date Here.. </h1>
 
-      <div>
-        <h1>FROM</h1>
+      <div className="date-text-box">
+        <h3>FROM</h3>
         <DataPicker
           selected={fromDate}
           onChange={(date) => setFromDate(date)}
@@ -57,7 +57,7 @@ function ListEventsByDate() {
           minDate={new Date()}
         />
 
-        <h1>TO</h1>
+        <h3>TO</h3>
         <DataPicker
           selected={toDate}
           onChange={(date) => settoDate(date)}

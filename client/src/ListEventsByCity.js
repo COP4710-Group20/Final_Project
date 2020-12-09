@@ -40,7 +40,7 @@ function ListEventsByCity() {
   }
 
   return (
-    <div>
+    <div className="userDashboard">
       <PartButtons></PartButtons>
       <h1> List Events In a city... </h1>
       <input

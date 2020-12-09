@@ -30,13 +30,24 @@ function AdminView() {
                 document.getElementById("s5").innerHTML = "End Date";
                 document.getElementById("s6").innerHTML = "City";
                 document.getElementById("s7").innerHTML = "Address";
-                document.getElementById("d1").innerHTML = result.map(result => <div id="d1">{result.event_title}</div>);
-                document.getElementById("d2").innerHTML = result.map(result => <div id="d2">{result.event_description}</div>);
-                document.getElementById("d3").innerHTML = result.map(result => <div id="d3">{result.event_URL}</div>);
-                document.getElementById("d4").innerHTML = result.map(result => <div id="d4">{result.event_start_date}</div>);
-                document.getElementById("d5").innerHTML = result.map(result => <div id="d5">{result.event_end_date}</div>);
-                document.getElementById("d6").innerHTML = result.map(result => <div id="d6">{result.event_city}</div>);
-                document.getElementById("d7").innerHTML = result.map(result => <div id="d7">{result.event_address}</div>);
+                
+                var Events = document.getElementsByClassName("Rows1")
+                for (var i = 0; i < Events.length; i++) {
+                    document.getElementsByClassName("Rows1")[i].innerHTML = "";
+                }
+                console.log(document.getElementsByClassName("Rows1"));
+
+                var Events2 = document.getElementsByClassName("Rows2")
+                for (var i = 0; i < Events2.length; i++) {
+                    Events2[i].innerHTML = "";
+                }
+                document.getElementById("d1").innerHTML = result.data.map(index => index.event_title);
+                document.getElementById("d2").innerHTML = result.data.map(index => index.event_description);
+                document.getElementById("d3").innerHTML = result.data.map(index => index.event_URL);
+                document.getElementById("d4").innerHTML = result.data.map(index => index.event_start_date);
+                document.getElementById("d5").innerHTML = result.data.map(index => index.event_end_date);
+                document.getElementById("d6").innerHTML = result.data.map(index => index.event_city);
+                document.getElementById("d7").innerHTML = result.data.map(index => index.event_address);
                 document.getElementById("help").innerHTML = result.data[0].event_id + " " + result.data[0].user_id + " " + aName;
             }
         )
@@ -78,14 +89,17 @@ function AdminView() {
                     <input id="AdminName"> </input>
                 </form>
             </div>     */}
+            <div className="myDiv" >
+                <p className="adminName" id="help"></p>
+            </div>
             <div className="Acolumn">
                 <h2 id= "secret">Admin Name</h2>
-                    {participants.map(participant => <div id="d1">{participant.display_name}</div>)}
+                    <ul id="Ulist">{participants.map(participant => <div className="Rows1" id="d1">{participant.display_name}</div>)}</ul>
             </div>
 
             <div className="Acolumn">
-                <h2 id="s2">Events hosted</h2>
-                    {participants.map(participant => <div id="d2">{participant.is_admin}</div>)}
+                <h2 id="s2"></h2>
+                    {participants.map(participant => <div className="Rows2" id="d2"></div>)}
             </div>
             <div className="Acolumn">
                 <h2 id="s3"> </h2>
@@ -112,9 +126,7 @@ function AdminView() {
                     <div id="d7"> </div>
             </div>
 
-            <div className="myDiv" >
-                <p className="adminName" id="help"></p>
-            </div>
+            
 
         </div>
     )

@@ -23,6 +23,7 @@ function AdminView() {
                 console.log(result);
                 //document.getElementsByClassName("adminName").innerHTML = "New HTML";
                 console.log(document.getElementById("help"));
+                document.getElementById("secret").innerHTML = "Event title";
                 document.getElementById("help").innerHTML = result.data[0].event_id + " " + result.data[0].user_id + " " + aName;
             }
         )
@@ -51,9 +52,9 @@ function AdminView() {
                 </div>
 
             </div>
-            <div> 
+            <div>
                 <h1> Search admin to see their events hosted </h1>
-                <input type="text" placeholder="Insert Admin Name..." 
+                <input type="text" placeholder="Insert Admin Name..."
                 onChange={(e) => {
                 setAName(e.target.value);
                 }}></input>
@@ -62,10 +63,10 @@ function AdminView() {
             {/* <div className="AdminNameInput">
                 <form>
                     <input id="AdminName"> </input>
-                </form>    
+                </form>
             </div>     */}
             <div className="Acolumn">
-                <h2>Admin Name</h2>
+                <h2 id= "secret">Admin Name</h2>
                     {participants.map(participant => <div>{participant.display_name}</div>)}
             </div>
 
@@ -76,7 +77,7 @@ function AdminView() {
 
             <div className="myDiv" >
                 <p className="adminName" id="help">Hi</p>
-            </div>    
+            </div>
 
         </div>
     )

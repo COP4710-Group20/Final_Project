@@ -17,6 +17,9 @@ function ListEventsByCity() {
   const [city, setCity] = useState([]);
   const [cityEvent, setCityEvent] = useState([]);
 
+  const myFunction = (id) => {
+    console.log(id);
+  }
   
   const searchCity = () => {
     console.log(city);
@@ -27,14 +30,15 @@ function ListEventsByCity() {
       console.log(response.data);
     }) 
   };
+  
   // state.user.user.user_id
   function signUp(id) {
     console.log(id);
     Axios.post("http://localhost:3001/signUp", {
       event_id: id, 
-      user_id: 1,
+      user_id: state.user.user.user_id,
     }).then((response) => {
-      setCityEvent(response.data);
+      //setCityEvent(response.data);
       console.log(response.data);
     }) 
   }
@@ -60,15 +64,15 @@ function ListEventsByCity() {
       {
         cityEvent.map((val, key) => {
           return <div className="list">
-            <button onClick={signUp(val.event_id)}>sign up</button>
+            <button onClick = { () => signUp(val.event_id)}>sign up</button>
             <div>{val.event_title}</div>
             <div>{val.event_URL}</div>
           </div>
         })
       }
-    
     </div>
   );
 }
 
 export default ListEventsByCity;
+// onClick={signUp(val.event_id)

@@ -11,11 +11,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-<<<<<<< HEAD
     port: 3300,
-=======
-    port: 3306,
->>>>>>> b599328c61fc6ef76dd7d4a3e6ac7cff827dcee9
     database: 'users_events_db'
 });
 
@@ -356,8 +352,6 @@ app.post('/viewByCity',(req, res)=>{
   });
 });
 
-<<<<<<< HEAD
-=======
 app.post('/viewByStartEnd',(req, res)=>{
 
   const event_start_date = req.body.event_start_date;
@@ -386,7 +380,6 @@ app.post('/viewByStartEnd',(req, res)=>{
   });
 });
 
->>>>>>> b599328c61fc6ef76dd7d4a3e6ac7cff827dcee9
 app.post('/signUp',(req, res)=>{
 
   const user_id = req.body.user_id;
@@ -420,8 +413,6 @@ app.post('/signUp',(req, res)=>{
   });
 });
 
-<<<<<<< HEAD
-=======
 // API call for an admin to view all of the events they created
 app.post('/viewAllEvents',(req, res)=>{
 
@@ -447,7 +438,6 @@ app.post('/viewAllEvents',(req, res)=>{
     }
   });
 });
->>>>>>> b599328c61fc6ef76dd7d4a3e6ac7cff827dcee9
 
 app.listen(3001, () => {
     console.log("running on port 3001");

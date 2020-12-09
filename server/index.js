@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    port: 3300,
+    port: 3306,
     database: 'users_events_db'
 });
 
@@ -260,8 +260,12 @@ app.post('/viewByCity',(req, res)=>{
 
 */
 // list active events
-app.get('/viewAllEvents', (req, res)=>{
-  db.query("SELECT * FROM events WHERE user_id = 1",
+app.post('/viewAllEvents',(req, res)=>{
+
+  const user_id = req.body.user_id
+
+  db.query("SELECT * FROM events WHERE user_id = (?)",
+  [user_id],
   function (err, result) {
     if(err)
     {
@@ -269,16 +273,15 @@ app.get('/viewAllEvents', (req, res)=>{
       res.send({err: err});
     }
 
-    else if(result)
+    else if(result.length > 0)
     {
-      //console.log(result);
+      console.log(result);
       res.send(result);
     }
     else
     {
-      res.send({message: "Empty"});
+      res.send({message: "You have not organized any events."});
     }
-
   });
 });
 
@@ -429,12 +432,13 @@ app.post('/signUp',(req, res)=>{
 });
 
 // API call for an admin to view all of the events they created
-app.post('/viewAllEvents',(req, res)=>{
+app.post('/viewActiveEvents',(req, res)=>{
 
-  const user_id = req.body.user_id
+  const user_id = req.body.user_id;
+  var today = new Date();
 
-  db.query("SELECT * FROM events WHERE user_id = (?)",
-  [user_id],
+  db.query("SELECT * FROM events WHERE user_id = (?) AND event_end_date >= ?",
+  [user_id, moment(today).format("YYYY-MM-DD")],
   function (err, result) {
     if(err)
     {

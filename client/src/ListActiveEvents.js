@@ -1,15 +1,21 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import Moment from "moment";
 import PartButtons from "./PartButtons";
+import {HomeContext} from './provider/provider';
 
 function ListActiveEvents() {
   const [activeEventList, setactiveEventList] = useState([]);
 
+  const global = useContext(HomeContext)
+  const state = global.state
+  const dispatch = global.dispatch
   // autorun script once page is visit
-  Axios.post("http://localhost:3001/listactiveevents", {}).then((response) => {
+  Axios.post("http://localhost:3001/viewActiveEvents", {
+    user_id: state.user.user.user_id,
+  }).then((response) => {
     setactiveEventList(response.data);
     console.log(response.data);
   });

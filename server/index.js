@@ -227,6 +227,93 @@ app.post('/viewByCity',(req, res)=>{
   });
 });
 
+app.post('/viewByStartEnd',(req, res)=>{
+
+  const event_start_date = req.body.event_start_date;
+  const event_end_date = req.body.event_end_date;
+
+  //Moment(today).format("YYYY-NN-DD");
+  db.query("SELECT * FROM events WHERE event_start_date >= (?) AND event_end_date <= (?)",
+  [moment(event_start_date).format("YYYY-MM-DD"), moment(event_end_date).format("YYYY-MM-DD")],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result.length > 0)
+    {
+      console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "There are no events planned during this time."});
+    }
+
+  });
+});
+
+app.post('/signUp',(req, res)=>{
+
+  const user_id = req.body.user_id;
+  const event_id = req.body.event_id;
+
+  //Moment(today).format("YYYY-NN-DD");
+  db.query("INSERT INTO signed_up_participants (user_id, event_id) VALUES (?,?)",
+  [user_id, event_id],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+    else
+    {
+      db.query("UPDATE users SET is_participant = 1 WHERE user_id = (?)",
+          [user_id],
+          function(err, result){
+            if(err)
+            {
+              console.log(err);
+              res.send({err:err});
+            }
+            else
+            {
+              res.send({message: "User is now participating in the event"});
+            }
+          });
+    }
+  });
+});
+
+// API call for an admin to view all of the events they created
+app.post('/viewAllEvents',(req, res)=>{
+
+  const user_id = req.body.user_id
+
+  db.query("SELECT * FROM events WHERE user_id = (?)",
+  [user_id],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result.length > 0)
+    {
+      console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "You have not organized any events."});
+    }
+  });
+});
+
 app.listen(3001, () => {
     console.log("running on port 3001");
 });

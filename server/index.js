@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    port: 3300,
+    port: 3306,
     database: 'users_events_db'
 });
 
@@ -175,14 +175,29 @@ app.post('/singlePart2', (req, res)=>{
 
       else if(result)
       {
-        console.log(result);
-        res.send(result);
+        var eventIDTable = [];
+        result.map(event => {
+          eventIDTable.push(event.event_id);
+        })
+        console.log("EVENTIDTABLE")
+        console.log(eventIDTable);
+        db.query("SELECT * FROM events WHERE event_id IN (?)", [eventIDTable],
+          (err, response) => {
+            console.log("THIS SHOULD BE MY RESPONSE");
+            console.log(response);
+            res.send(response);
+          }
+          
+          );
+
+        event_id=result[0].event_id;
+        
+        //res.send(result);
       }
       else
       {
         res.send({message: "Empty"});
       }
-
     });
   });
 

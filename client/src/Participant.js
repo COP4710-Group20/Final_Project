@@ -30,11 +30,11 @@ function Participant() {
                 console.log(result);
                 document.getElementById("s1").innerHTML = "Event Title";
                 document.getElementById("s2").innerHTML = "Event Description";
-                /*document.getElementById("s3").innerHTML = "Event URL";
+                document.getElementById("s3").innerHTML = "Event URL";
                 document.getElementById("s4").innerHTML = "Start Date";
                 document.getElementById("s5").innerHTML = "End Date";
                 document.getElementById("s6").innerHTML = "City";
-                document.getElementById("s7").innerHTML = "Address";*/
+                document.getElementById("s7").innerHTML = "Address";
                 var Events = document.getElementsByClassName("Rows1")
                 for (var i = 0; i < Events.length; i++) {
                     document.getElementsByClassName("Rows1")[i].innerHTML = "";
@@ -45,13 +45,14 @@ function Participant() {
                 for (var i = 0; i < Events2.length; i++) {
                     Events2[i].innerHTML = "";
                 }
-                document.getElementById("d1").innerHTML = result.data.map(index => index.event_id);
-                /*document.getElementById("d2").innerHTML = result.data.map(index => index.event_description);
-                document.getElementById("d3").innerHTML = result.data.map(index => index.event_URL);
-                document.getElementById("d4").innerHTML = result.data.map(index => index.event_start_date);
-                document.getElementById("d5").innerHTML = result.data.map(index => index.event_end_date);
-                document.getElementById("d6").innerHTML = result.data.map(index => index.event_city);
-                document.getElementById("d7").innerHTML = result.data.map(index => index.event_address);*/
+                document.getElementById("d1").innerHTML = result.data.map(index => index.event_title + "<br/>");
+                document.getElementById("d2").innerHTML = result.data.map(index => index.event_description + "<br/>");
+                document.getElementById("d3").innerHTML = result.data.map(index => index.event_URL + "<br/>");
+                document.getElementById("d4").innerHTML = result.data.map(index => index.event_start_date + "<br/>");
+                document.getElementById("d5").innerHTML = result.data.map(index => index.event_end_date + "<br/>");
+                document.getElementById("d6").innerHTML = result.data.map(index => index.event_city + "<br/>");
+                document.getElementById("d7").innerHTML = result.data.map(index => index.event_address + "<br/>");
+                document.getElementById("help").innerHTML = uName;
             }
         )
     }
@@ -87,6 +88,10 @@ function Participant() {
                 }}></input>
                 <button onClick={searchUser}>Search Their Events!</button>
                 </div>
+
+            <div className="myDiv" >
+                <h2 className="adminName" id="help"></h2>
+            </div>    
             <div className="column">
                 <h2 id= "s1">Participant Name</h2>
                     <ul>
@@ -95,8 +100,8 @@ function Participant() {
             </div>
 
             <div className="column">
-                <h2 id="s2">Events Attended</h2>
-                    {participants.map(participant => <div className="Rows2" id="d2">{participant.is_participant}</div>)}
+                <h2 id="s2"></h2>
+                    {participants.map(participant => <div className="Rows2" id="d2"></div>)}
             </div>
 
             <div className="column">

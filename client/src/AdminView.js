@@ -41,14 +41,14 @@ function AdminView() {
                 for (var i = 0; i < Events2.length; i++) {
                     Events2[i].innerHTML = "";
                 }
-                document.getElementById("d1").innerHTML = result.data.map(index => index.event_title);
-                document.getElementById("d2").innerHTML = result.data.map(index => index.event_description);
-                document.getElementById("d3").innerHTML = result.data.map(index => index.event_URL);
-                document.getElementById("d4").innerHTML = result.data.map(index => index.event_start_date);
-                document.getElementById("d5").innerHTML = result.data.map(index => index.event_end_date);
-                document.getElementById("d6").innerHTML = result.data.map(index => index.event_city);
-                document.getElementById("d7").innerHTML = result.data.map(index => index.event_address);
-                document.getElementById("help").innerHTML = result.data[0].event_id + " " + result.data[0].user_id + " " + aName;
+                document.getElementById("d1").innerHTML = result.data.map(index => index.event_title + "<br/>");
+                document.getElementById("d2").innerHTML = result.data.map(index => index.event_description + "<br/>");
+                document.getElementById("d3").innerHTML = result.data.map(index => index.event_URL + "<br/>");
+                document.getElementById("d4").innerHTML = result.data.map(index => index.event_start_date + "<br/>");
+                document.getElementById("d5").innerHTML = result.data.map(index => index.event_end_date + "<br/>");
+                document.getElementById("d6").innerHTML = result.data.map(index => index.event_city + "<br/>");
+                document.getElementById("d7").innerHTML = result.data.map(index => index.event_address + "<br/>");
+                document.getElementById("help").innerHTML = aName;
             }
         )
     }
@@ -90,7 +90,7 @@ function AdminView() {
                 </form>
             </div>     */}
             <div className="myDiv" >
-                <p className="adminName" id="help"></p>
+                <h2 className="adminName" id="help"></h2>
             </div>
             <div className="Acolumn">
                 <h2 id= "secret">Admin Name</h2>

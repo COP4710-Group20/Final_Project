@@ -11,7 +11,11 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
+<<<<<<< HEAD
+    port: 3300,
+=======
     port: 3306,
+>>>>>>> b599328c61fc6ef76dd7d4a3e6ac7cff827dcee9
     database: 'users_events_db'
 });
 
@@ -92,10 +96,6 @@ app.get('/participant', (req, res)=>{//for now it is zero but will be changed to
     {
       //console.log(result);
       res.send(result);
-    }
-    else
-    {
-      res.send({message: "Empty"});
     }
 
   });
@@ -193,6 +193,85 @@ app.post('/singlePart2', (req, res)=>{
   
 });
 
+// list active events
+app.post('/listactiveevents', (req, res)=>{
+  var today = new Date();
+
+  db.query("SELECT * FROM events WHERE event_end_date >= (?) AND event_start_date <= (?)",
+  [moment(today).format("YYYY-MM-DD"), moment(today).format("YYYY-MM-DD")],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result.length > 0)
+    {
+      console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "There are no active events"});
+    }
+
+  });
+});
+
+/*
+app.post('/viewByCity',(req, res)=>{
+
+  const event_city = req.body.event_city;
+  var today = new Date();
+  //Moment(today).format("YYYY-NN-DD");
+  db.query("SELECT * FROM events WHERE event_city = (?) AND event_end_date >= (?)",
+  [event_city, moment(today).format("YYYY-MM-DD")],
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result.length > 0)
+    {
+      console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "There are no events planned in that city."});
+    }
+
+  });
+});
+
+*/
+// list active events
+app.get('/viewAllEvents', (req, res)=>{
+  db.query("SELECT * FROM events WHERE user_id = 1",
+  function (err, result) {
+    if(err)
+    {
+      console.log(err);
+      res.send({err: err});
+    }
+
+    else if(result)
+    {
+      //console.log(result);
+      res.send(result);
+    }
+    else
+    {
+      res.send({message: "Empty"});
+    }
+
+  });
+});
+
+
 app.post('/createEvent', (req, res)=>{
 
   const user_id = req.body.user_id;
@@ -266,7 +345,7 @@ app.post('/viewByCity',(req, res)=>{
 
     else if(result.length > 0)
     {
-      //console.log(result);
+      console.log(result);
       res.send(result);
     }
     else
@@ -277,6 +356,8 @@ app.post('/viewByCity',(req, res)=>{
   });
 });
 
+<<<<<<< HEAD
+=======
 app.post('/viewByStartEnd',(req, res)=>{
 
   const event_start_date = req.body.event_start_date;
@@ -305,6 +386,7 @@ app.post('/viewByStartEnd',(req, res)=>{
   });
 });
 
+>>>>>>> b599328c61fc6ef76dd7d4a3e6ac7cff827dcee9
 app.post('/signUp',(req, res)=>{
 
   const user_id = req.body.user_id;
@@ -338,6 +420,8 @@ app.post('/signUp',(req, res)=>{
   });
 });
 
+<<<<<<< HEAD
+=======
 // API call for an admin to view all of the events they created
 app.post('/viewAllEvents',(req, res)=>{
 
@@ -363,6 +447,7 @@ app.post('/viewAllEvents',(req, res)=>{
     }
   });
 });
+>>>>>>> b599328c61fc6ef76dd7d4a3e6ac7cff827dcee9
 
 app.listen(3001, () => {
     console.log("running on port 3001");

@@ -23,7 +23,20 @@ function AdminView() {
                 console.log(result);
                 //document.getElementsByClassName("adminName").innerHTML = "New HTML";
                 console.log(document.getElementById("help"));
-                document.getElementById("secret").innerHTML = "Event title";
+                document.getElementById("secret").innerHTML = "Event Title";
+                document.getElementById("s2").innerHTML = "Event Description";
+                document.getElementById("s3").innerHTML = "Event URL";
+                document.getElementById("s4").innerHTML = "Start Date";
+                document.getElementById("s5").innerHTML = "End Date";
+                document.getElementById("s6").innerHTML = "City";
+                document.getElementById("s7").innerHTML = "Address";
+                document.getElementById("d1").innerHTML = result.map(result => <div id="d1">{result.event_title}</div>);
+                document.getElementById("d2").innerHTML = result.map(result => <div id="d2">{result.event_description}</div>);
+                document.getElementById("d3").innerHTML = result.map(result => <div id="d3">{result.event_URL}</div>);
+                document.getElementById("d4").innerHTML = result.map(result => <div id="d4">{result.event_start_date}</div>);
+                document.getElementById("d5").innerHTML = result.map(result => <div id="d5">{result.event_end_date}</div>);
+                document.getElementById("d6").innerHTML = result.map(result => <div id="d6">{result.event_city}</div>);
+                document.getElementById("d7").innerHTML = result.map(result => <div id="d7">{result.event_address}</div>);
                 document.getElementById("help").innerHTML = result.data[0].event_id + " " + result.data[0].user_id + " " + aName;
             }
         )
@@ -67,16 +80,40 @@ function AdminView() {
             </div>     */}
             <div className="Acolumn">
                 <h2 id= "secret">Admin Name</h2>
-                    {participants.map(participant => <div>{participant.display_name}</div>)}
+                    {participants.map(participant => <div id="d1">{participant.display_name}</div>)}
             </div>
 
             <div className="Acolumn">
-                <h2>Events hosted</h2>
-                    {participants.map(participant => <div>{participant.is_admin}</div>)}
+                <h2 id="s2">Events hosted</h2>
+                    {participants.map(participant => <div id="d2">{participant.is_admin}</div>)}
+            </div>
+            <div className="Acolumn">
+                <h2 id="s3"> </h2>
+                    <div id="d3"> </div>
+            </div>
+
+            <div className="Acolumn">
+                <h2 id="s4"> </h2>
+                    <div id="d4"> </div>
+            </div>
+
+            <div className="Acolumn">
+                <h2 id="s5"> </h2>
+                    <div id="d5"> </div>
+            </div>
+
+            <div className="Acolumn">
+                <h2 id="s6"> </h2>
+                    <div id="d6"> </div>
+            </div>
+
+            <div className="Acolumn">
+                <h2 id="s7"> </h2>
+                    <div id="d7"> </div>
             </div>
 
             <div className="myDiv" >
-                <p className="adminName" id="help">Hi</p>
+                <p className="adminName" id="help"></p>
             </div>
 
         </div>

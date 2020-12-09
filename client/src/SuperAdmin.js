@@ -2,7 +2,6 @@ import './App.css';
 import React , { useState, useContext } from 'react';
 import {useHistory} from 'react-router-dom';
 import {HomeContext} from './provider/provider';
-import "./App.css";
 
 function SuperAdmin() {
 

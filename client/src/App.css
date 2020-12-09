@@ -140,12 +140,26 @@ nav{
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  color: white;
 }
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   padding-left: 60px;
+}
+.city-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: white;
 }
 
 /* .login-submit{

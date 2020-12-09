@@ -30,10 +30,11 @@ function ListActiveEvents() {
 
   function ViewActive() {
     history.push('/listactiveevents')
-    Axios.get("http://localhost:3001/listactiveevents").then((response) => {
-      console.log(response);
+    Axios.post("http://localhost:3001/listactiveevents", {
+    }).then((response) => {
       setactiveEventList(response.data);
-    });
+      console.log(response.data);
+    }) 
   }
 
   function ViewPast() {

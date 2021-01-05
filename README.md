@@ -1,6 +1,12 @@
 # Final_Project
 Final Project for COP4710
 
+React Front End inside client 
+
+Mysql backend inside server
+
+Client makes calls to server
+
 npm start from inside client
 
 npm install express react-scripts react-router-dom body-parser mysql nodemon in server
